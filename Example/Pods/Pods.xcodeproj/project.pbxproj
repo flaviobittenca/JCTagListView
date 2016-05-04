@@ -12,6 +12,7 @@
 		11E83009EAC568189B7866BB /* JCTagListView.h in Headers */ = {isa = PBXBuildFile; fileRef = E8EAB5BEA081DEA2EC059AAA /* JCTagListView.h */; };
 		20F4467A7FC5DCF8D5D7A733 /* JCTagCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC125EA135A435D1BC67EBC /* JCTagCell.h */; };
 		31312143877CBA670B090FEB /* JCTagListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E83C91326EF62DCCF76675E /* JCTagListView.m */; };
+		3756250C1CDA4403006CCF4B /* JCTagTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3756250B1CDA4403006CCF4B /* JCTagTextFieldCell.m */; };
 		41C36370A41973FF685BB313 /* JCTagListView.h in Headers */ = {isa = PBXBuildFile; fileRef = E8EAB5BEA081DEA2EC059AAA /* JCTagListView.h */; };
 		42DB3F510167B124E78EC14B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E06C88D8AFF731CFB8E6143 /* Foundation.framework */; };
 		4E09F5FCC47165C3C86C305D /* JCTagCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E6D1FDA04F7A294BC4C5B67 /* JCTagCell.m */; };
@@ -68,6 +69,8 @@
 		284D3F004FEDD5FC81843E1E /* Pods-JCTagListView_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-JCTagListView_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		2859C5FB122BB9052C6B108C /* Pods-JCTagListView_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-JCTagListView_Example.release.xcconfig"; sourceTree = "<group>"; };
 		300D157DB9B1776DDF97A7A1 /* JCCollectionViewTagFlowLayout.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = JCCollectionViewTagFlowLayout.h; sourceTree = "<group>"; };
+		3756250A1CDA4403006CCF4B /* JCTagTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCTagTextFieldCell.h; sourceTree = "<group>"; };
+		3756250B1CDA4403006CCF4B /* JCTagTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCTagTextFieldCell.m; sourceTree = "<group>"; };
 		38770CD94A7BFC713E339E46 /* Pods-JCTagListView_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-JCTagListView_Tests-dummy.m"; sourceTree = "<group>"; };
 		3A0915E88C2830B21A8E478D /* JCTagListView.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JCTagListView.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		418863EF66F94AA5159D6916 /* Pods-JCTagListView_Tests-JCTagListView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JCTagListView_Tests-JCTagListView.xcconfig"; path = "../Pods-JCTagListView_Tests-JCTagListView/Pods-JCTagListView_Tests-JCTagListView.xcconfig"; sourceTree = "<group>"; };
@@ -197,6 +200,8 @@
 				9E6D1FDA04F7A294BC4C5B67 /* JCTagCell.m */,
 				E8EAB5BEA081DEA2EC059AAA /* JCTagListView.h */,
 				9E83C91326EF62DCCF76675E /* JCTagListView.m */,
+				3756250A1CDA4403006CCF4B /* JCTagTextFieldCell.h */,
+				3756250B1CDA4403006CCF4B /* JCTagTextFieldCell.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -503,6 +508,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A909A5BE5DB840F29FCD00C5 /* Pods-JCTagListView_Example-dummy.m in Sources */,
+				3756250C1CDA4403006CCF4B /* JCTagTextFieldCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

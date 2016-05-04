@@ -8,6 +8,7 @@
 
 #import "JCTagListView.h"
 #import "JCTagCell.h"
+#import "JCTagTextFieldCell.h"
 #import "JCCollectionViewTagFlowLayout.h"
 
 @interface JCTagListView ()<UICollectionViewDelegate, UICollectionViewDataSource>
@@ -94,22 +95,12 @@ static NSString * const reuseIdentifier = @"tagListViewItemId";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.textFieldEnabled && indexPath.row == self.tags.count - 1) {
-        UICollectionViewCell *collectionViewCell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-        collectionViewCell.layer.borderColor = [UIColor lightGrayColor].CGColor;
-        collectionViewCell.layer.cornerRadius = 4.0f;
+        JCTagTextFieldCell *textFieldCell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+        textFieldCell.backgroundColor = self.tagBackgroundColor;
+        textFieldCell.layer.borderColor = self.tagStrokeColor.CGColor;
+        textFieldCell.layer.cornerRadius = self.tagCornerRadius;
         
-        UITextField *textField = [[UITextField alloc] initWithFrame:collectionViewCell.bounds];
-        textField.font = [UIFont fontWithName:@"Avenir-Book" size:15.0f];
-        textField.textColor = [UIColor lightGrayColor];
-        textField.placeholder = @"add a new tag";
-        textField.borderStyle = UITextBorderStyleRoundedRect;
-        textField.layer.borderColor = [UIColor clearColor].CGColor;
-        textField.backgroundColor = [UIColor clearColor];
-        textField.layer.cornerRadius = 4.0f;
-        
-        [collectionViewCell.contentView addSubview:textField];
-        
-        return collectionViewCell;
+        return textFieldCell;
     } else {
         JCTagCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
         cell.backgroundColor = self.tagBackgroundColor;

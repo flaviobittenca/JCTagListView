@@ -18,7 +18,7 @@
         
         _titleLabel = [[UILabel alloc] initWithFrame:self.bounds];
         _titleLabel.textAlignment = NSTextAlignmentCenter;
-        _titleLabel.font = [UIFont systemFontOfSize:14.0f];
+        _titleLabel.font = [UIFont fontWithName:@"Avenir-Book" size:14.0f];
         [self.contentView addSubview:_titleLabel];
     }
     
