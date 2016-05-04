@@ -20,6 +20,7 @@
         _textField.delegate = self;
         _textField .textAlignment = NSTextAlignmentCenter;
         _textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+        _textField.autocorrectionType = UITextAutocorrectionTypeNo;
         _textField.font = [UIFont fontWithName:@"Avenir-Book" size:16.0f];
         _textField.textColor = [UIColor lightGrayColor];
         _textField.placeholder = @"add a new tag";
