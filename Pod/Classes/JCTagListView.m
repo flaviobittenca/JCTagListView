@@ -20,6 +20,7 @@
 @implementation JCTagListView
 
 static NSString * const reuseIdentifier = @"tagListViewItemId";
+static NSString * const reuseTextFieldIdentifier = @"tagListViewTextFieldItemId";
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -67,6 +68,7 @@ static NSString * const reuseIdentifier = @"tagListViewItemId";
     _collectionView.showsVerticalScrollIndicator = NO;
     _collectionView.backgroundColor = [UIColor clearColor];
     [_collectionView registerClass:[JCTagCell class] forCellWithReuseIdentifier:reuseIdentifier];
+    [_collectionView registerClass:[JCTagTextFieldCell class] forCellWithReuseIdentifier:reuseTextFieldIdentifier];
     [self addSubview:_collectionView];
 }
 
@@ -95,7 +97,7 @@ static NSString * const reuseIdentifier = @"tagListViewItemId";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.textFieldEnabled && indexPath.row == self.tags.count - 1) {
-        JCTagTextFieldCell *textFieldCell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+        JCTagTextFieldCell *textFieldCell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseTextFieldIdentifier forIndexPath:indexPath];
         textFieldCell.backgroundColor = self.tagBackgroundColor;
         textFieldCell.layer.borderColor = self.tagStrokeColor.CGColor;
         textFieldCell.layer.cornerRadius = self.tagCornerRadius;
