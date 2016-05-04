@@ -19,7 +19,8 @@
         _textField = [[UITextField alloc] initWithFrame:self.bounds];
         _textField.delegate = self;
         _textField .textAlignment = NSTextAlignmentCenter;
-        _textField.font = [UIFont fontWithName:@"Avenir-Book" size:15.0f];
+        _textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+        _textField.font = [UIFont fontWithName:@"Avenir-Book" size:16.0f];
         _textField.textColor = [UIColor lightGrayColor];
         _textField.placeholder = @"add a new tag";
         _textField.borderStyle = UITextBorderStyleRoundedRect;
@@ -47,11 +48,13 @@
     self.textField.text = @"";
 }
 
+
 #pragma mark - TextField Delegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [self.delegate didPressEnterInTextField:textField.text];
     return YES;
 }
+
 
 @end
