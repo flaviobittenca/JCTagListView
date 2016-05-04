@@ -81,12 +81,15 @@ static NSString * const reuseTextFieldIdentifier = @"tagListViewTextFieldItemId"
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    if (self.textFieldEnabled && self.tags.count == 0) {
-        return  1;
+    if (self.textFieldEnabled) {
+        if (self.tags.count == 0) {
+            return  1;
+        } else {
+            return self.tags.count + 1;
+        }
     } else {
-        return self.tags.count + 1;
+        return self.tags.count;
     }
-    
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
