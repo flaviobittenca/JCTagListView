@@ -98,14 +98,14 @@ static NSString * const reuseTextFieldIdentifier = @"tagListViewTextFieldItemId"
         JCCollectionViewTagFlowLayout *layout = (JCCollectionViewTagFlowLayout *)collectionView.collectionViewLayout;
         CGSize maxSize = CGSizeMake(collectionView.frame.size.width - layout.sectionInset.left - layout.sectionInset.right, layout.itemSize.height);
         
-        return CGSizeMake(120.0f, layout.itemSize.height);
+        return CGSizeMake(130.0f, layout.itemSize.height);
     } else {
         JCCollectionViewTagFlowLayout *layout = (JCCollectionViewTagFlowLayout *)collectionView.collectionViewLayout;
         CGSize maxSize = CGSizeMake(collectionView.frame.size.width - layout.sectionInset.left - layout.sectionInset.right, layout.itemSize.height);
         
         CGRect frame = [self.tags[indexPath.item] boundingRectWithSize:maxSize options:NSStringDrawingUsesFontLeading|NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14.0f]} context:nil];
         
-        return CGSizeMake(frame.size.width + 20.0f, layout.itemSize.height);
+        return CGSizeMake(frame.size.width + 30.0f, layout.itemSize.height);
     }
     
 }
