@@ -161,9 +161,12 @@ static NSString * const reuseTextFieldIdentifier = @"tagListViewTextFieldItemId"
 #pragma mark - JCTagTextFieldCellDelegate
 
 - (void)didPressEnterInTextField:(NSString *)text {
-    [self.tags addObject:text];
-    [self.collectionView reloadData];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"didPressEnterInTextFieldNotification" object:self];
+    if (![text isEqualToString:@""]) {
+        [self.tags addObject:text];
+        [self.collectionView reloadData];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"didPressEnterInTextFieldNotification" object:self];
+    }
+    
 }
 
 @end
