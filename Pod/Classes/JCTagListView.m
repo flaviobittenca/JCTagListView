@@ -163,6 +163,7 @@ static NSString * const reuseTextFieldIdentifier = @"tagListViewTextFieldItemId"
 - (void)didPressEnterInTextField:(NSString *)text {
     [self.tags addObject:text];
     [self.collectionView reloadData];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"didPressEnterInTextFieldNotification" object:self];
 }
 
 @end
