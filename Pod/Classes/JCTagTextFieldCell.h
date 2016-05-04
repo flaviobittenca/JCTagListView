@@ -8,8 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface JCTagTextFieldCell : UICollectionViewCell
+@protocol JCTagTextFieldCellProtocol <NSObject>
 
+- (void)didPressEnterInTextField:(NSString *)text;
+
+@end
+
+@interface JCTagTextFieldCell : UICollectionViewCell <UITextFieldDelegate>
+
+@property (nonatomic, weak) id<JCTagTextFieldCellProtocol> delegate;
 @property (nonatomic, strong) UITextField *textField;
 
 @end

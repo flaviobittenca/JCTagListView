@@ -8,7 +8,7 @@
 
 #import "JCTagTextFieldCell.h"
 
-@implementation JCTagTextFieldCell
+@implementation JCTagTextFieldCell 
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -17,6 +17,7 @@
         self.layer.borderWidth = 1.0f;
         
         _textField = [[UITextField alloc] initWithFrame:self.bounds];
+        _textField.delegate = self;
         _textField .textAlignment = NSTextAlignmentCenter;
         _textField.font = [UIFont fontWithName:@"Avenir-Book" size:15.0f];
         _textField.textColor = [UIColor lightGrayColor];
@@ -44,6 +45,13 @@
     [super prepareForReuse];
     
     self.textField.text = @"";
+}
+
+#pragma mark - TextField Delegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [self.delegate didPressEnterInTextField:textField.text];
+    return YES;
 }
 
 @end

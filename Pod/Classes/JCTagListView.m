@@ -11,7 +11,7 @@
 #import "JCTagTextFieldCell.h"
 #import "JCCollectionViewTagFlowLayout.h"
 
-@interface JCTagListView ()<UICollectionViewDelegate, UICollectionViewDataSource>
+@interface JCTagListView ()<UICollectionViewDelegate, UICollectionViewDataSource, JCTagTextFieldCellProtocol>
 
 @property (nonatomic, copy) JCTagListViewBlock selectedBlock;
 
@@ -81,23 +81,37 @@ static NSString * const reuseTextFieldIdentifier = @"tagListViewTextFieldItemId"
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return self.tags.count;
+    if (self.textFieldEnabled && self.tags.count == 0) {
+        return  1;
+    } else {
+        return self.tags.count + 1;
+    }
+    
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    JCCollectionViewTagFlowLayout *layout = (JCCollectionViewTagFlowLayout *)collectionView.collectionViewLayout;
-    CGSize maxSize = CGSizeMake(collectionView.frame.size.width - layout.sectionInset.left - layout.sectionInset.right, layout.itemSize.height);
+    if (self.textFieldEnabled && (self.tags.count == 0 || (indexPath.row == self.tags.count))) {
+        JCCollectionViewTagFlowLayout *layout = (JCCollectionViewTagFlowLayout *)collectionView.collectionViewLayout;
+        CGSize maxSize = CGSizeMake(collectionView.frame.size.width - layout.sectionInset.left - layout.sectionInset.right, layout.itemSize.height);
+        
+        return CGSizeMake(120.0f, layout.itemSize.height);
+    } else {
+        JCCollectionViewTagFlowLayout *layout = (JCCollectionViewTagFlowLayout *)collectionView.collectionViewLayout;
+        CGSize maxSize = CGSizeMake(collectionView.frame.size.width - layout.sectionInset.left - layout.sectionInset.right, layout.itemSize.height);
+        
+        CGRect frame = [self.tags[indexPath.item] boundingRectWithSize:maxSize options:NSStringDrawingUsesFontLeading|NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14.0f]} context:nil];
+        
+        return CGSizeMake(frame.size.width + 20.0f, layout.itemSize.height);
+    }
     
-    CGRect frame = [self.tags[indexPath.item] boundingRectWithSize:maxSize options:NSStringDrawingUsesFontLeading|NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14.0f]} context:nil];
-    
-    return CGSizeMake(frame.size.width + 20.0f, layout.itemSize.height);
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.textFieldEnabled && indexPath.row == self.tags.count - 1) {
+    if (self.textFieldEnabled && (self.tags.count == 0 || (indexPath.row == self.tags.count))) {
         JCTagTextFieldCell *textFieldCell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseTextFieldIdentifier forIndexPath:indexPath];
+        textFieldCell.delegate = self;
         textFieldCell.backgroundColor = self.tagBackgroundColor;
         textFieldCell.layer.borderColor = self.tagStrokeColor.CGColor;
         textFieldCell.layer.cornerRadius = self.tagCornerRadius;
@@ -139,6 +153,13 @@ static NSString * const reuseTextFieldIdentifier = @"tagListViewTextFieldItemId"
     if (self.selectedBlock) {
         self.selectedBlock(indexPath.item);
     }
+}
+
+#pragma mark - JCTagTextFieldCellDelegate
+
+- (void)didPressEnterInTextField:(NSString *)text {
+    [self.tags addObject:text];
+    [self.collectionView reloadData];
 }
 
 @end
