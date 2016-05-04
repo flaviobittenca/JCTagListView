@@ -19,6 +19,7 @@ typedef void (^JCTagListViewBlock)(NSInteger index);
 
 @property (nonatomic, assign) CGFloat tagCornerRadius;// default: 10
 @property (nonatomic, assign) BOOL canSelectTags;// default: NO
+@property (nonatomic, assign) BOOL textFieldEnabled;
 
 @property (nonatomic, strong) NSMutableArray *tags;
 @property (nonatomic, strong, readonly) NSMutableArray *selectedTags;

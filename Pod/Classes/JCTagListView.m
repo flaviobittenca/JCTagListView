@@ -93,18 +93,37 @@ static NSString * const reuseIdentifier = @"tagListViewItemId";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    JCTagCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    cell.backgroundColor = self.tagBackgroundColor;
-    cell.layer.borderColor = self.tagStrokeColor.CGColor;
-    cell.layer.cornerRadius = self.tagCornerRadius;
-    cell.titleLabel.text = self.tags[indexPath.item];
-    cell.titleLabel.textColor = self.tagTextColor;
-    
-    if ([self.selectedTags containsObject:self.tags[indexPath.item]]) {
-        cell.backgroundColor = self.tagSelectedBackgroundColor;
+    if (self.textFieldEnabled && indexPath.row == self.tags.count - 1) {
+        UICollectionViewCell *collectionViewCell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+        collectionViewCell.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        collectionViewCell.layer.cornerRadius = 4.0f;
+        
+        UITextField *textField = [[UITextField alloc] initWithFrame:collectionViewCell.bounds];
+        textField.font = [UIFont fontWithName:@"Avenir-Book" size:15.0f];
+        textField.textColor = [UIColor lightGrayColor];
+        textField.placeholder = @"add a new tag";
+        textField.borderStyle = UITextBorderStyleRoundedRect;
+        textField.layer.borderColor = [UIColor clearColor].CGColor;
+        textField.backgroundColor = [UIColor clearColor];
+        textField.layer.cornerRadius = 4.0f;
+        
+        [collectionViewCell.contentView addSubview:textField];
+        
+        return collectionViewCell;
+    } else {
+        JCTagCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+        cell.backgroundColor = self.tagBackgroundColor;
+        cell.layer.borderColor = self.tagStrokeColor.CGColor;
+        cell.layer.cornerRadius = self.tagCornerRadius;
+        cell.titleLabel.text = self.tags[indexPath.item];
+        cell.titleLabel.textColor = self.tagTextColor;
+        
+        if ([self.selectedTags containsObject:self.tags[indexPath.item]]) {
+            cell.backgroundColor = self.tagSelectedBackgroundColor;
+        }
+        
+        return cell;
     }
-    
-    return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
