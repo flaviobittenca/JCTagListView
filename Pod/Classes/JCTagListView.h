@@ -22,7 +22,7 @@ typedef void (^JCTagListViewBlock)(NSInteger index);
 @property (nonatomic, assign) BOOL textFieldEnabled;
 
 @property (nonatomic, strong) NSMutableArray *tags;
-@property (nonatomic, strong, readonly) NSMutableArray *selectedTags;
+@property (nonatomic, strong) NSMutableArray *selectedTags;
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 
