@@ -161,7 +161,9 @@ static NSString * const reuseTextFieldIdentifier = @"tagListViewTextFieldItemId"
 #pragma mark - JCTagTextFieldCellDelegate
 
 - (void)didPressEnterInTextField:(NSString *)text {
+    text = [text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     if (![text isEqualToString:@""]) {
+        
         [self.tags addObject:text];
         [self.collectionView reloadData];
     }
